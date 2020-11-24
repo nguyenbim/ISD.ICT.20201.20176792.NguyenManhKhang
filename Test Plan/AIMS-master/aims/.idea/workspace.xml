@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="88c1dccb-b5a0-46e5-be77-4840ddb447a5" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
+  </component>
+  <component name="ProjectId" id="1kkhsiA3sDkHXUmDjbpaG3cQZUz" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="Downloaded.Files.Path.Enabled" value="false" />
+    <property name="Repository.Attach.Annotations" value="false" />
+    <property name="Repository.Attach.JavaDocs" value="false" />
+    <property name="Repository.Attach.Sources" value="false" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/AIMS-Student/lib/win/javafx-sdk-15/bin" />
+    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+  </component>
+  <component name="RunManager" selected="Application.App">
+    <configuration name="App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="App" />
+      <module name="aims" />
+      <option name="VM_PARAMETERS" value="--module-path C:\Users\khang\Documents\GitHub\ISD.ICT.20201.20176792.NguyenManhKhang\Test Plan\AIMS-master\aims\javafx-sdk-15.0.1\lib --add-modules javafx.controls,javafx.fxml" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ValidateAddressTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="aims" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="ValidateAddressTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.App" />
+      <item itemvalue="JUnit.ValidateAddressTest" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.App" />
+        <item itemvalue="JUnit.ValidateAddressTest" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="88c1dccb-b5a0-46e5-be77-4840ddb447a5" name="Default Changelist" comment="" />
+      <created>1606250705402</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1606250705402</updated>
+      <workItem from="1606250707230" duration="563000" />
+      <workItem from="1606251304500" duration="9000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="383" y="195" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1606250870874">
+      <screen x="0" y="0" width="1858" height="1080" />
+    </state>
+    <state x="383" y="195" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1858.1080@0.0.1858.1080" timestamp="1606250870874" />
+    <state x="709" y="245" key="#com.intellij.ide.macro.MacrosDialog" timestamp="1606250827214">
+      <screen x="0" y="0" width="1858" height="1080" />
+    </state>
+    <state x="709" y="245" key="#com.intellij.ide.macro.MacrosDialog/0.0.1858.1080@0.0.1858.1080" timestamp="1606250827214" />
+    <state x="726" y="415" key="DetectedRootsChooserDialog" timestamp="1606250969336">
+      <screen x="0" y="0" width="1858" height="1080" />
+    </state>
+    <state x="726" y="415" key="DetectedRootsChooserDialog/0.0.1858.1080@0.0.1858.1080" timestamp="1606250969336" />
+    <state x="635" y="281" key="FileChooserDialogImpl" timestamp="1606251041556">
+      <screen x="0" y="0" width="1858" height="1080" />
+    </state>
+    <state x="635" y="281" key="FileChooserDialogImpl/0.0.1858.1080@0.0.1858.1080" timestamp="1606251041556" />
+    <state width="1815" height="295" key="GridCell.Tab.0.bottom" timestamp="1606251274696">
+      <screen x="0" y="0" width="1858" height="1080" />
+    </state>
+    <state width="1815" height="295" key="GridCell.Tab.0.bottom/0.0.1858.1080@0.0.1858.1080" timestamp="1606251274696" />
+    <state width="1815" height="295" key="GridCell.Tab.0.center" timestamp="1606251274696">
+      <screen x="0" y="0" width="1858" height="1080" />
+    </state>
+    <state width="1815" height="295" key="GridCell.Tab.0.center/0.0.1858.1080@0.0.1858.1080" timestamp="1606251274696" />
+    <state width="1815" height="295" key="GridCell.Tab.0.left" timestamp="1606251274696">
+      <screen x="0" y="0" width="1858" height="1080" />
+    </state>
+    <state width="1815" height="295" key="GridCell.Tab.0.left/0.0.1858.1080@0.0.1858.1080" timestamp="1606251274696" />
+    <state width="1815" height="295" key="GridCell.Tab.0.right" timestamp="1606251274696">
+      <screen x="0" y="0" width="1858" height="1080" />
+    </state>
+    <state width="1815" height="295" key="GridCell.Tab.0.right/0.0.1858.1080@0.0.1858.1080" timestamp="1606251274696" />
+    <state x="409" y="114" key="SettingsEditor" timestamp="1606251056800">
+      <screen x="0" y="0" width="1858" height="1080" />
+    </state>
+    <state x="409" y="114" key="SettingsEditor/0.0.1858.1080@0.0.1858.1080" timestamp="1606251056800" />
+    <state x="633" y="432" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD" timestamp="1606250753816">
+      <screen x="0" y="0" width="1858" height="1080" />
+    </state>
+    <state x="633" y="432" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD/0.0.1858.1080@0.0.1858.1080" timestamp="1606250753816" />
+    <state x="659" y="301" key="extract.method.dialog" timestamp="1606251100668">
+      <screen x="0" y="0" width="1858" height="1080" />
+    </state>
+    <state x="659" y="301" key="extract.method.dialog/0.0.1858.1080@0.0.1858.1080" timestamp="1606251100668" />
+  </component>
+</project>
