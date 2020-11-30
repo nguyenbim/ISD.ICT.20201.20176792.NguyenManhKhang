@@ -21,7 +21,7 @@ class ValidateAddressTest {
             "$#Hanoi,false",
             ",false"
     })
-    @Test
+
     public void test(String address, boolean expected) {
         boolean isValid = placeOrderController.validateAddress(address);
         assertEquals(expected, isValid);

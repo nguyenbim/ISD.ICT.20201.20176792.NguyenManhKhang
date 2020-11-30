@@ -8,9 +8,9 @@ import utils.Configs;
 
 public class Order {
     
-    private int shippingFees;
-    private List lstOrderMedia;
-    private HashMap<String, String> deliveryInfo;
+    protected int shippingFees;
+    protected List lstOrderMedia;
+    protected HashMap<String, String> deliveryInfo;
 
     public Order(){
         this.lstOrderMedia = new ArrayList<>();

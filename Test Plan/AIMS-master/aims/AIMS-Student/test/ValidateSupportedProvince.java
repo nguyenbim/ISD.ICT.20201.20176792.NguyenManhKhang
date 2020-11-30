@@ -1,11 +1,9 @@
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
-import controller.PlaceRushOrderController;
+
 import controller.PlaceRushOrderController;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvFileSource;
 import org.junit.jupiter.params.provider.CsvSource;
 
 class ValidateSupportedProvince{
@@ -23,7 +21,7 @@ class ValidateSupportedProvince{
             "Nghe An, false",
             ",false"
     })
-    @Test
+
     public void test(String province, boolean expected) {
         boolean isValid = placeRushOrderController.validateSupportedProvince(province);
         assertEquals(expected, isValid);

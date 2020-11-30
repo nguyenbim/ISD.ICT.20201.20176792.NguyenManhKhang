@@ -21,7 +21,6 @@ class ValidateNameTest {
             "$#khang,false",
             ",false"
     })
-    @Test
     public void test(String name, boolean expected) {
         boolean isValid = placeOrderController.validateName(name);
         assertEquals(expected, isValid);

@@ -1,6 +1,13 @@
 package controller;
 
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
+
+import java.io.IOException;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.DateFormat;
@@ -20,11 +27,40 @@ import entity.order.Order;
 import entity.order.OrderMedia;
 import views.screen.popup.PopupScreen;
 
+/**
+ * This class controls the flow of place rush  order usecase in our AIMS project
+ * @author HUST
+ * <p>
+ * Create at: 30/11/20
+ * <p>
+ * Project name: AIMS-Student
+ * <p>
+ * Teacher's name: Dr. Nguyen Thi Thu Trang
+ * <p>
+ * Class name: TT.CNTT ICT 02 K62
+ * <p>
+ * Helpers: Teaching assistants
+ */
 
 public class PlaceRushOrderController extends BaseController{
-    public void validateRushDeliveryInfo(HashMap<String, String> info) throws InterruptedException, IOException{
+
+    /**
+     * The method validates the info
+     * @param info Information for rush order
+     * @throws InterruptedException
+     * @throws IOException
+     */
+    public void validateRushDeliveryInfo(HashMap<String, String> info) throws InterruptedException, IOException {
 
     }
+
+    /**
+     * This method validates received datetime for rush order
+     * @param fromTime lower bounder
+     * @param toTime upper bounder
+     * @param date datetime
+     * @return true if valid
+     */
     public boolean validateReceiveDateTime (String fromTime, String toTime, String date) {
         String fromDateTime  = fromTime + " " + date;
         String toDateTime = toTime + " " + date;
@@ -44,6 +80,11 @@ public class PlaceRushOrderController extends BaseController{
         return true;
     }
 
+    /**
+     * This method check the province for rush order
+     * @param province province
+     * @return true if province is hanoi
+     */
     public boolean validateSupportedProvince (String province) {
         if(province == null){}
         else {

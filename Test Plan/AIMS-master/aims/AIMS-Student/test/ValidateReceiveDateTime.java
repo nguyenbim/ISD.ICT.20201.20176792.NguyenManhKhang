@@ -1,11 +1,9 @@
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
-import controller.PlaceRushOrderController;
+
 import controller.PlaceRushOrderController;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvFileSource;
 import org.junit.jupiter.params.provider.CsvSource;
 
 class ValidateReceiveDateTime{
@@ -24,7 +22,7 @@ class ValidateReceiveDateTime{
             "7:00,,,false",
             ",,,false"
     })
-    @Test
+
     public void test(String fromTime, String toTime, String date, boolean expected) {
         boolean isValid = placeRushOrderController.validateReceiveDateTime(fromTime,toTime,date);
         assertEquals(expected, isValid);
