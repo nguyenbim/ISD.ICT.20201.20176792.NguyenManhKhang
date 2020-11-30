@@ -105,7 +105,9 @@ public class Media {
         this.id = id;
         return this;
     }
-
+    public  boolean isRushSupported(){
+        return rushSupported;
+    }
     public String getTitle() {
         return this.title;
     }
