@@ -29,9 +29,10 @@ import views.screen.popup.PopupScreen;
 
 /**
  * This class controls the flow of place rush  order usecase in our AIMS project
- * @author HUST
+ *
+ * @author khang
  * <p>
- * Create at: 30/11/20
+ * Create at: 12/1/2020
  * <p>
  * Project name: AIMS-Student
  * <p>
@@ -85,13 +86,7 @@ public class PlaceRushOrderController extends BaseController{
     public Invoice createInvoice(RushOrder rushOrder) {
         return new Invoice(rushOrder);
     }
-    /**
-     * This method validates received datetime for rush order
-     * @param fromTime lower bounder
-     * @param toTime upper bounder
-     * @param date datetime
-     * @return true if valid
-     */
+
     /**
      * This method takes responsibility for processing the shipping info from user
      * @param info
@@ -114,6 +109,13 @@ public class PlaceRushOrderController extends BaseController{
 
     }
 
+    /**
+     * This method validates received datetime for rush order
+     * @param fromTime lower bounder
+     * @param toTime upper bounder
+     * @param date datetime
+     * @return true if valid
+     */
     public boolean validateReceiveDateTime (String fromTime, String toTime, String date) {
         String fromDateTime  = fromTime + " " + date;
         String toDateTime = toTime + " " + date;
