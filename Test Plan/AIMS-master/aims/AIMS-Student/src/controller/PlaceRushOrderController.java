@@ -154,6 +154,7 @@ public class PlaceRushOrderController extends BaseController{
     public boolean validateSupportedItems(){
         return true;
     }
+//    public boolean validateRushCart(){};
 
 
 }
