@@ -32,7 +32,15 @@ public class Cart {
     public List getListMedia(){
         return lstCartMedia;
     }
-
+    public List getListRushMedia(){
+        List<CartMedia> returnedList = new ArrayList<>();
+        for(CartMedia media : lstCartMedia){
+            if(media.getMedia().isRushSupported()) {
+                returnedList.add(media);
+            }
+        }
+        return returnedList;
+    }
     public void emptyCart(){
         lstCartMedia.clear();
     }

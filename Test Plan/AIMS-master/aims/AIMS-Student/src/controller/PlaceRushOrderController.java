@@ -87,17 +87,6 @@ public class PlaceRushOrderController extends BaseController{
         return new Invoice(rushOrder);
     }
 
-    /**
-     * This method takes responsibility for processing the shipping info from user
-     * @param info
-     * @throws InterruptedException
-     * @throws IOException
-     */
-    public void processDeliveryInfo(HashMap info) throws InterruptedException, IOException{
-        LOGGER.info("Process Delivery Info");
-        LOGGER.info(info.toString());
-        validateDeliveryInfo(info);
-    }
 
     /**
      * The method validates the info
@@ -105,8 +94,17 @@ public class PlaceRushOrderController extends BaseController{
      * @throws InterruptedException
      * @throws IOException
      */
-    public void validateDeliveryInfo(HashMap<String, String> info) throws InterruptedException, IOException{
-
+    public String validateDeliveryInfo(HashMap<String, String> info) throws InterruptedException, IOException{
+        if(!validateSupportedProvince(info.get("province"))) {
+            return ("-- invalid province");
+        }
+        if(!validateSupportedItems()) {
+            return ("-- invalid item");
+        }
+        if(!validateReceiveDateTime(info.get("fromTime"),info.get("toTime"),info.get("date"))) {
+            return ("-- invalid time");
+        }
+        return "ok";
     }
 
     /**
@@ -154,9 +152,22 @@ public class PlaceRushOrderController extends BaseController{
 
     }
     public boolean validateSupportedItems(){
+        try {
+            if (Cart.getCart().getListRushMedia().size() == 0) {
+                return false;
+            }
+        } catch (NullPointerException e) {
+            return false;
+        }
         return true;
     }
-//    public boolean validateRushCart(){};
+    public int calculateShippingFee(Order rushOrder) {
+        int fees = (int) (((0.5 * 10) / 100) * rushOrder.getAmount());
+        fees += 10000 * rushOrder.getlstOrderMedia().size();
+        LOGGER.info("Order Amount: " + rushOrder.getAmount() + " -- Shipping Fees: " + fees);
+        rushOrder.setShippingFees(fees);
+        return fees;
+    }
 
 
 }

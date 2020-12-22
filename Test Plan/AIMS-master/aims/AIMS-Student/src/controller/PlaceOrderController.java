@@ -78,9 +78,23 @@ public class PlaceOrderController extends BaseController{
    * @throws InterruptedException
    * @throws IOException
    */
-    public void validateDeliveryInfo(HashMap<String, String> info) throws InterruptedException, IOException{
-    	
+    public String validateDeliveryInfo(HashMap<String, String> info) throws InterruptedException, IOException{
+        if(!validateName(info.get("name"))) {
+            return ("INVALID NAME");
+        }
+        if(!validatePhoneNumber(info.get("phone"))) {
+            return ("INVALID PHONE NUMBER");
+        }
+        if(!validateProvince(info.get("province"))) {
+            return ("SELECT PROVINCE");
+        }
+        if(!validateAddress(info.get("address"))) {
+            return ("INVALID ADDRESS");
+        }
+
+        return "ok";
     }
+
     
     public boolean validatePhoneNumber(String phoneNumber) {
     	// TODO: your work
@@ -120,6 +134,16 @@ public class PlaceOrderController extends BaseController{
         }
     	return true;
     }
+    public boolean validateProvince(String province) {
+        try {
+            if(province.isBlank()) {
+                return false;
+            }
+        } catch (NullPointerException e) {
+            return false;
+        }
+        return true;
+    }
     
 
     /**
@@ -131,6 +155,7 @@ public class PlaceOrderController extends BaseController{
         Random rand = new Random();
         int fees = (int)( ( (rand.nextFloat()*10)/100 ) * order.getAmount() );
         LOGGER.info("Order Amount: " + order.getAmount() + " -- Shipping Fees: " + fees);
+        order.setShippingFees(fees);
         return fees;
     }
 }
