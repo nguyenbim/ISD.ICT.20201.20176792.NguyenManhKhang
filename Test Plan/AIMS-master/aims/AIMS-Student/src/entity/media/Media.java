@@ -80,7 +80,8 @@ public class Media {
                 .setCategory(res.getString("category"))
                 .setMediaURL(res.getString("imageUrl"))
                 .setPrice(res.getInt("price"))
-                .setType(res.getString("type"));
+                .setType(res.getString("type"))
+                .setRushSupported(res.getInt("rushSupported") == 1);
             medium.add(media);
         }
         return medium;
@@ -107,6 +108,10 @@ public class Media {
     }
     public  boolean isRushSupported(){
         return rushSupported;
+    }
+    public Media setRushSupported(boolean rushSupported) {
+        this.rushSupported = rushSupported;
+        return this;
     }
     public String getTitle() {
         return this.title;

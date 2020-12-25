@@ -9,6 +9,7 @@ import java.io.Writer;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.net.HttpURLConnection;
+import java.net.ProtocolException;
 import java.net.URL;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -50,15 +51,16 @@ public class API {
 	public static String post(String url, String data
 //			, String token
 	) throws IOException {
-		allowMethods("PATCH");
+//		allowMethods("PATCH");
 		URL line_api_url = new URL(url);
 		String payload = data;
 		LOGGER.info("Request Info:\nRequest URL: " + url + "\n" + "Payload Data: " + payload + "\n");
 		HttpURLConnection conn = (HttpURLConnection) line_api_url.openConnection();
 		conn.setDoInput(true);
 		conn.setDoOutput(true);
-		conn.setRequestMethod("PATCH");
 		conn.setRequestProperty("Content-Type", "application/json");
+		API.setRequestMethod("PATCH",conn);
+
 //		conn.setRequestProperty("Authorization", "Bearer " + token);
 		Writer writer = new BufferedWriter(new OutputStreamWriter(conn.getOutputStream()));
 		writer.write(payload);
@@ -96,6 +98,36 @@ public class API {
 		} catch (NoSuchFieldException | IllegalAccessException e) {
 			throw new IllegalStateException(e);
 		}
+	}
+	private static void setRequestMethod(String method, HttpURLConnection connection) throws IOException {
+		try {
+			connection.setRequestMethod(method);
+		} catch (ProtocolException e) {
+			// JDK only allows one of the fixed set of verbs. Try to override that
+			try {
+				Field $method = HttpURLConnection.class.getDeclaredField("method");
+				$method.setAccessible(true);
+				$method.set(connection, method);
+			} catch (Exception x) {
+				throw (IOException) new IOException("Failed to set the custom verb").initCause(x);
+			}
+			// sun.net.www.protocol.https.DelegatingHttpsURLConnection delegates to another HttpURLConnection
+			try {
+				Field $delegate = connection.getClass().getDeclaredField("delegate");
+				$delegate.setAccessible(true);
+				Object delegate = $delegate.get(connection);
+				if (delegate instanceof HttpURLConnection) {
+					HttpURLConnection nested = (HttpURLConnection) delegate;
+					setRequestMethod(method, nested);
+				}
+			} catch (NoSuchFieldException x) {
+				// no problem
+			} catch (IllegalAccessException x) {
+				throw (IOException) new IOException("Failed to set the custom verb").initCause(x);
+			}
+		}
+		if (!connection.getRequestMethod().equals(method))
+			throw new IllegalStateException("Failed to set the request method to " + method);
 	}
 
 }

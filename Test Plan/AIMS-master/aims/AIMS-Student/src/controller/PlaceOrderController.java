@@ -53,7 +53,7 @@ public class PlaceOrderController extends BaseController{
 
     /**
      * This method creates the new Invoice based on order
-     * @param order
+     * @param order chosen order
      * @return Invoice
      */
     public Invoice createInvoice(Order order) {
@@ -62,19 +62,19 @@ public class PlaceOrderController extends BaseController{
 
     /**
      * This method takes responsibility for processing the shipping info from user
-     * @param info
+     * @param info delivery information
      * @throws InterruptedException
      * @throws IOException
      */
-    public void processDeliveryInfo(HashMap info) throws InterruptedException, IOException{
+    public String processDeliveryInfo(HashMap info) throws InterruptedException, IOException{
         LOGGER.info("Process Delivery Info");
         LOGGER.info(info.toString());
-        validateDeliveryInfo(info);
+       return validateDeliveryInfo(info);
     }
     
     /**
    * The method validates the info
-   * @param info
+   * @param info delivery info
    * @throws InterruptedException
    * @throws IOException
    */
@@ -95,7 +95,11 @@ public class PlaceOrderController extends BaseController{
         return "ok";
     }
 
-    
+    /**
+     * Validate phone number
+     * @param phoneNumber phone number
+     * @return true if valid
+     */
     public boolean validatePhoneNumber(String phoneNumber) {
     	// TODO: your work
         if(phoneNumber.length() != 10) return false;
@@ -107,7 +111,12 @@ public class PlaceOrderController extends BaseController{
         }
     	return true;
     }
-    
+
+    /**
+     * validate name
+     * @param name owner name
+     * @return true if valid
+     */
     public boolean validateName(String name) {
     	// TODO: your work
         if(name == null) return false;
@@ -120,7 +129,11 @@ public class PlaceOrderController extends BaseController{
         }
     	return true;
     }
-    
+    /**
+     * validate address
+     * @param address delivery address
+     * @return true if valid
+     */
     public boolean validateAddress(String address) {
     	// TODO: your work
         if(address==null) return false;
@@ -134,6 +147,11 @@ public class PlaceOrderController extends BaseController{
         }
     	return true;
     }
+    /**
+     * validate province
+     * @param province delivery province
+     * @return true if valid
+     */
     public boolean validateProvince(String province) {
         try {
             if(province.isBlank()) {
@@ -148,7 +166,7 @@ public class PlaceOrderController extends BaseController{
 
     /**
      * This method calculates the shipping fees of order
-     * @param order
+     * @param order chosen order
      * @return shippingFee
      */
     public int calculateShippingFee(Order order){

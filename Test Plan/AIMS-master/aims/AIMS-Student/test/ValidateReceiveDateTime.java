@@ -14,17 +14,15 @@ class ValidateReceiveDateTime{
     }
     @ParameterizedTest
     @CsvSource({
-            "07:00,10:00,30/11/2020,true",
-            "8:00,7:00,30/11/2020,false",
-            "7:00,12:00,26/11/2020,true",
-            "123,10:00,30/11/2020,false",
-            "7:00,10:00,abc,false",
-            "7:00,,,false",
-            ",,,false"
+            ", false",
+            "1999-04-12 11:30,false",
+            "2999-04-12 20:30,false",
+            "2999-04-12 14:30,true",
+            "abcd ,false"
     })
 
-    public void test(String fromTime, String toTime, String date, boolean expected) {
-        boolean isValid = placeRushOrderController.validateReceiveDateTime(fromTime,toTime,date);
+    public void test(String timeString, boolean expected) {
+        boolean isValid = placeRushOrderController.validateReceiveDateTime(timeString);
         assertEquals(expected, isValid);
     }
 

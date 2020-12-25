@@ -18,4 +18,5 @@ views.screen.home
 views.screen.invoice
 views.screen.payment
 views.screen.popup
+views.screen.rushOrder
 views.screen.shipping

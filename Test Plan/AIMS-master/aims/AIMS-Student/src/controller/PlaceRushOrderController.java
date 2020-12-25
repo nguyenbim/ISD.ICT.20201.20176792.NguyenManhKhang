@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeParseException;
 import java.util.Date;
 import java.util.HashMap;
 
@@ -25,6 +27,7 @@ import entity.invoice.Invoice;
 import entity.order.Order;
 import entity.order.OrderMedia;
 import entity.order.RushOrder;
+import utils.Utils;
 import views.screen.popup.PopupScreen;
 
 /**
@@ -43,7 +46,7 @@ import views.screen.popup.PopupScreen;
  * Helpers: Teaching assistants
  */
 
-public class PlaceRushOrderController extends BaseController{
+public class PlaceRushOrderController extends PlaceOrderController{
 
 
 
@@ -83,54 +86,48 @@ public class PlaceRushOrderController extends BaseController{
      * @param rushOrder
      * @return Invoice
      */
-    public Invoice createInvoice(RushOrder rushOrder) {
+    public Invoice createInvoice(Order order,RushOrder rushOrder) {
         return new Invoice(rushOrder);
     }
 
 
     /**
      * The method validates the info
-     * @param info
+     * @param info customer info
      * @throws InterruptedException
      * @throws IOException
      */
     public String validateDeliveryInfo(HashMap<String, String> info) throws InterruptedException, IOException{
         if(!validateSupportedProvince(info.get("province"))) {
-            return ("-- invalid province");
+            return ("INVALID PROVINCE");
         }
         if(!validateSupportedItems()) {
-            return ("-- invalid item");
+            return ("INVALID ITEMS");
         }
-        if(!validateReceiveDateTime(info.get("fromTime"),info.get("toTime"),info.get("date"))) {
-            return ("-- invalid time");
+        if(!validateReceiveDateTime(info.get("rushDeliveryTime"))) {
+            return ("INVALID TIME");
         }
         return "ok";
     }
 
     /**
      * This method validates received datetime for rush order
-     * @param fromTime lower bounder
-     * @param toTime upper bounder
-     * @param date datetime
      * @return true if valid
      */
-    public boolean validateReceiveDateTime (String fromTime, String toTime, String date) {
-        String fromDateTime  = fromTime + " " + date;
-        String toDateTime = toTime + " " + date;
-        if(fromTime == null || toTime == null|| date == null) return false;
-        else {
-            try {
-                DateFormat dateTimeFormat = new SimpleDateFormat("HH:mm dd/MM/yyyy");
-                Date currentDateTime = new Date();
-                Date fromDateTimeAfterConverted = dateTimeFormat.parse(fromDateTime);
-                Date toDateTimeAfterConverted = dateTimeFormat.parse(toDateTime);
-                if (fromDateTimeAfterConverted.after(toDateTimeAfterConverted) || currentDateTime.after(toDateTimeAfterConverted))
-                    return false;
-            } catch (ParseException e) {
+    public boolean validateReceiveDateTime (String timeString) {
+        try {
+            LocalDateTime time = LocalDateTime.parse(timeString, Utils.formatter);
+            if (time.compareTo(LocalDateTime.now()) <= 0) {
                 return false;
             }
+            if (time.getHour() > 18 || time.getHour() < 9) {
+                return false;
+            }
+        } catch (NullPointerException | DateTimeParseException e) {
+            return false;
         }
         return true;
+
     }
 
     /**
@@ -151,6 +148,11 @@ public class PlaceRushOrderController extends BaseController{
         return false;
 
     }
+
+    /**
+     * Validate items
+     * @return true if valid
+     */
     public boolean validateSupportedItems(){
         try {
             if (Cart.getCart().getListRushMedia().size() == 0) {
@@ -161,6 +163,12 @@ public class PlaceRushOrderController extends BaseController{
         }
         return true;
     }
+
+    /**
+     * Calculates shipping fees
+     * @param rushOrder rush order
+     * @return shipping fees
+     */
     public int calculateShippingFee(Order rushOrder) {
         int fees = (int) (((0.5 * 10) / 100) * rushOrder.getAmount());
         fees += 10000 * rushOrder.getlstOrderMedia().size();

@@ -8,6 +8,7 @@ import java.util.ResourceBundle;
 
 import controller.PlaceOrderController;
 import common.exception.InvalidDeliveryInfoException;
+import controller.PlaceRushOrderController;
 import entity.invoice.Invoice;
 import entity.order.Order;
 import javafx.beans.property.BooleanProperty;
@@ -22,7 +23,7 @@ import javafx.stage.Stage;
 import utils.Configs;
 import views.screen.BaseScreenHandler;
 import views.screen.invoice.InvoiceScreenHandler;
-import views.screen.popup.PopupScreen;
+import views.screen.rushOrder.RushShippingHandler;
 
 public class ShippingScreenHandler extends BaseScreenHandler implements Initializable {
 
@@ -44,7 +45,7 @@ public class ShippingScreenHandler extends BaseScreenHandler implements Initiali
 	@FXML
 	private ComboBox<String> province;
 
-	private Order order;
+	protected Order order;
 
 	public ShippingScreenHandler(Stage stage, String screenPath, Order order) throws IOException {
 		super(stage, screenPath);
@@ -93,6 +94,45 @@ public class ShippingScreenHandler extends BaseScreenHandler implements Initiali
 		InvoiceScreenHandler.setScreenTitle("Invoice Screen");
 		InvoiceScreenHandler.setBController(getBController());
 		InvoiceScreenHandler.show();
+	}
+
+	/**
+	 * Handles option "place rush order"
+	 * @param event button clicked
+	 * @throws IOException
+	 * @throws InterruptedException
+	 * @throws SQLException
+	 */
+	@FXML
+	void movetoRushOrder(MouseEvent event) throws IOException, InterruptedException, SQLException {
+
+		// add info to messages
+		HashMap messages = new HashMap<>();
+		messages.put("name", name.getText());
+		messages.put("phone", phone.getText());
+		messages.put("address", address.getText());
+		messages.put("instructions", instructions.getText());
+		messages.put("province", province.getValue());
+		try {
+			// process and validate delivery info
+			getBController().processDeliveryInfo(messages);
+		} catch (InvalidDeliveryInfoException e) {
+			throw new InvalidDeliveryInfoException(e.getMessage());
+		}
+
+		// calculate shipping fees
+		int shippingFees = getBController().calculateShippingFee(order);
+		order.setShippingFees(shippingFees);
+		order.setDeliveryInfo(messages);
+
+		Invoice invoice = getBController().createInvoice(order);
+		RushShippingHandler rushShippingHandler = new RushShippingHandler(this.stage, Configs.RUSH_SHIPPING_PATH, invoice);
+		rushShippingHandler.setPreviousScreen(this);
+		rushShippingHandler.setHomeScreenHandler(homeScreenHandler);
+		rushShippingHandler.setScreenTitle("Rush Shipping");
+		rushShippingHandler.setBController(new PlaceRushOrderController());
+		rushShippingHandler.show();
+
 	}
 
 	public PlaceOrderController getBController(){
